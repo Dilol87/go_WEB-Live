@@ -13,11 +13,11 @@ func main() {
 	var Map [][]int
 	Map = write_rnd(&Map, re_y, re_x)
 
-	drow(Map)
+	draw(Map)
 
 }
 
-func drow(Map [][]int) {
+func draw(Map [][]int) {
 	correcting_var := (len(Map[0]) - 1)
 	rol := ""
 
