@@ -11,18 +11,19 @@ var Map [30][75]int
 func main() {
 
 	rand.Seed(time.Now().UnixNano())
+	correcting_var := (len(Map[0]) - 1)
 
-	for y := range Map {
-		for x := range Map[y] {
+	for y, m := range Map {
+		for x := range m {
 			Map[y][x] = rand.Intn(3)
 
 		}
 	}
 
-	for y := range Map {
-		for x := range Map[y] {
+	for y, m := range Map {
+		for x := range m {
 			fmt.Print(Map[y][x])
-			if x == (len(Map[y]) - 1) {
+			if x == correcting_var {
 				fmt.Println()
 
 			}
