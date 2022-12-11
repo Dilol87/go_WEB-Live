@@ -3,18 +3,25 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os/exec"
 	"time"
 )
 
 func main() {
 	re_x := 25
 	re_y := 10
+	cmd, _ := exec.Command("clear").Output()
 
 	var Map [][]int
 	Map = write_rnd(&Map, re_y, re_x)
 
-	draw(Map)
-
+	for {
+		draw(Map)
+		time.Sleep(100000000)
+		fmt.Println("")
+		fmt.Println(string(cmd))
+		Map = write_rnd(&Map, re_y, re_x)
+	}
 }
 
 func draw(Map [][]int) {
@@ -23,7 +30,13 @@ func draw(Map [][]int) {
 
 	for y, m := range Map {
 		for x := range m {
-			rol += fmt.Sprint(Map[y][x])
+			switch Map[y][x] {
+			case 0:
+				rol += " "
+			case 1:
+				rol += "0"
+			}
+
 			if x == correcting_var {
 				rol += "\n"
 			}
@@ -38,7 +51,7 @@ func write_rnd(Map_Start *[][]int, y int, x int) [][]int {
 	for i := 0; i < y; i++ {
 		var buff []int
 		for j := 0; j < x; j++ {
-			buff = append(buff, rand.Intn(3))
+			buff = append(buff, rand.Intn(2))
 		}
 		Map_S = append(Map_S, buff)
 	}
