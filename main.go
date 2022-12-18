@@ -1,27 +1,18 @@
 package main
 
 import (
+	conf "GWL/conf"
 	"fmt"
 	"math/rand"
-	"os/exec"
 	"time"
 )
 
 func main() {
-	re_x := 25
-	re_y := 10
-	cmd, _ := exec.Command("clear").Output()
 
 	var Map [][]int
-	Map = write_rnd(&Map, re_y, re_x)
+	Map = write_rnd(&Map, conf.RES_Y, conf.RES_X)
 
-	for {
-		draw(Map)
-		time.Sleep(100000000)
-		fmt.Println("")
-		fmt.Println(string(cmd))
-		Map = write_rnd(&Map, re_y, re_x)
-	}
+	draw(Map)
 }
 
 func draw(Map [][]int) {
